@@ -226,4 +226,30 @@ pnpm dlx husky-init && pnpm install
 . "$(dirname -- "$0")/_/husky.sh"
 
 pnpm validate
-````
+```
+
+## 17. Setting up `lint-staged`:
+
+```bash
+pnpm add -D lint-staged -w
+```
+
+./lint-staged.config.js:
+
+```js
+module.exports = {
+  '*.{ts,tsx}': (filenames) => ['pnpm validate'],
+};
+```
+
+Now, we update ./.husky/pre-commit:
+
+```bash
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+pnpm lint-staged
+
+```
+
+## 18
