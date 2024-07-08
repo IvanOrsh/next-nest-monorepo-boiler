@@ -115,4 +115,12 @@ apps/web/package.json:
 }
 ```
 
-## 9. 
+## 9. `.npmrc` 
+
+Ensure that packages within the workspace are symlinked to each other
+
+```.npmrc
+link-workspace-packages=true
+```
+
+## 10. 
