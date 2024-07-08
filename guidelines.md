@@ -123,4 +123,38 @@ Ensure that packages within the workspace are symlinked to each other
 link-workspace-packages=true
 ```
 
-## 10. 
+## 10. Setting up nx:
+
+`pnpm dlx` fetches a package from the registry without installing it as a dependency, hotloads it, and runs whatever default command binary it exposes.
+
+Nx
+
+```bash
+pnpm dlx nx@latest init
+```
+
+To run build:
+
+```bash
+pnpm exec nx run-many --target=build
+```
+
+## 11. Setting up prettier:
+
+```bash
+pnpm add -D prettier -w
+```
+
+add to `package.json` (in the root folder) the following scripts:
+
+```json
+{
+  "scripts": {
+    "format": "prettier \"{apps,libs}/**/*.{ts,tsx,js,json}\" --ignore-path .gitignore",
+    "format:check": "pnpm format --check",
+    "format:write": "pnpm format --write"
+  }
+}
+```
+
+And don't forget to create `.prettierrc` with the rules of your choice.
