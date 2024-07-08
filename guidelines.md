@@ -1,17 +1,17 @@
-1. Make a new project's folder:
+## 1. Make a new project's folder:
 
 ```bash
 mkdir <project-name>
 ```
 
-2. Initialize the project:
+## 2. Initialize the project:
 
 ```bash
 cd <project-name>
 pnpm inti
 ```
 
-3. Create a `pnpm-workspace.yaml`:
+## 3. Create a `pnpm-workspace.yaml`:
 
 ```bash
 touch pnpm-workspace.yaml
@@ -25,19 +25,19 @@ packages:
   - "libs/*"
 ```
 
-4. Create directories:
+## 4. Create directories:
 
 ```bash
 mkdir apps libs
 ```
 
-5. Create `.gitignore` with the following content:
+## 5. Create `.gitignore` with the following content:
 
 ```bash
 echo -e "node_modules \nbuild \ndist \n.next \n.env \n.nx" > .gitignore
 ```
 
-6. Initialize git:
+## 6. Initialize git:
 
 ```bash
 git init
@@ -54,3 +54,65 @@ git add .
 ```bash
 git commit -m "build: initial commit"
 ```
+
+## 7. Initialize apps: one for frontend and one for backend:
+
+for frontend (for frontend, we are going to use nextjs meta framework):
+
+```bash
+cd apps
+```
+
+```bash
+pnpm create next-app
+```
+
+- name: web
+- everything, except for "customize the default import alias": "yes"
+- "customize the default import alias": "no"
+
+---
+
+for backend (let's use nestjs):
+
+If you never installed `nest` cli, you might want to install it first.
+
+```bash
+nest new api --strict --skip-git --package-manager=pnpm
+```
+
+In the command above, we’re creating a new Nestjs project named ‘api’ without initializing Git, as Git will be initialized at the root level. We’re using ‘npm’ as our package manager.
+
+- name: api
+- package manger: pnpm
+
+
+
+## 8. Update `apps/api/package.json` and `apps/web/package.json`:
+
+
+apps/api/package.json:
+```json
+{
+  "name": "name": "@next-nest-monorepo-boiler/api",
+  // ...
+  "scripts": {
+    "dev": "nest start --watch",
+    // ...
+  }
+}
+```
+
+apps/web/package.json:
+```json
+{
+  "name": "@next-nest-monorepo-boiler/web",
+  // ...
+  "scripts": {
+    "dev": "next dev -p 3001",
+    // ...
+  }
+}
+```
+
+## 9. 
