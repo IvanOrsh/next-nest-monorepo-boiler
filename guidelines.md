@@ -213,4 +213,17 @@ nx.json:
 }
 ```
 
-##
+## 16. Implementing pre-commits hooks with `husky`
+
+```bash
+pnpm dlx husky-init && pnpm install
+```
+
+./.husky/pre-commit:
+
+```bash
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+pnpm validate
+````
