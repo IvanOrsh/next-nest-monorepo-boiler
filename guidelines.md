@@ -158,3 +158,59 @@ add to `package.json` (in the root folder) the following scripts:
 ```
 
 And don't forget to create `.prettierrc` with the rules of your choice.
+
+## 12. Setting up eslint:
+
+`package.json` (root folder), scripts:
+
+```json
+{
+  "scripts": {
+    "lint": "pnpm exec nx run-many --target=lint"
+  }
+}
+```
+
+## 13. `tsc` script - make sure you have `tsc` script in apps, libs (if you want to do type checking)
+
+```json
+{
+  "scripts": {
+    "tsc": "pnpm exec nx run-many --target=tsc",
+  }
+}
+```
+
+## 14. Validate script: combining together formatting, linting and type checking
+
+```json
+{
+  "scripts": {
+    "validate": "pnpm format:write && pnpm tsc && pnpm lint"
+  }
+}
+```
+
+## 15. Update `nx.json` to cache linking, formatting and type checking results
+
+nx.json:
+
+```json
+{
+    "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/.next, build, dist"],
+      "cache": true
+    },
+    "lint": {
+      "cache": true
+    },
+    "tsc": {
+      "cache": true
+    }
+  },
+}
+```
+
+##
